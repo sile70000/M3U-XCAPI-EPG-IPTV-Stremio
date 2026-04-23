@@ -273,7 +273,9 @@ class M3UEPGAddon {
     }
 
     isMovieFormat(name) {
-        return [/\(\d{4}\)/, /\d{4}\./, /HD$|FHD$|4K$/i].some(p => p.test(name));
+        // Heuristic for Direct M3U: treat entries with a year as movies.
+        // NOTE: Do NOT use "HD/FHD/4K" suffixes here because IPTV channel names often include them.
+        return [/\(\d{4}\)/, /\b\d{4}\b/].some(p => p.test(name));
     }
 
     async parseEPG(content) {
