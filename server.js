@@ -101,7 +101,7 @@ app.post("/api/prefetch", async (req, res) => {
     const u = new URL(url);
     const host = u.hostname;
     // Basic SSRF / local network block
-    if (
+/*    if (
       host === "localhost" ||
       host === "0.0.0.0" ||
       /^127\./.test(host) ||
@@ -112,7 +112,7 @@ app.post("/api/prefetch", async (req, res) => {
     ) {
       return res.status(400).json({ error: "Blocked host" });
     }
-
+*/
     dlog("Prefetch start", { url, purpose });
 
     const controller = new AbortController();
